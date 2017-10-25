@@ -150,6 +150,18 @@ Maven has a central repository where you can find and reference the most common 
 ...
 {% endhighlight %}
 
+And then we can reference the dependency in the local repository
+
+{% highlight xml %}
+...
+<dependency>
+    <artifactId>salesforceCRMManagement</artifactId>
+    <groupId>com.javier.local</groupId>
+    <version>1.0.0</version>
+</dependency>
+...
+{% endhighlight %}
+
 ### Source
 
 All the source code of this post is in this [GitHub repository](https://github.com/sfdcode/talend-on-heroku.git)
