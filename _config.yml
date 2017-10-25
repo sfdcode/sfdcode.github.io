@@ -10,9 +10,9 @@ minimal_mistakes_skin    : "default" # "default", "air", "contrast", "dark", "di
 
 # Site Settings
 locale                   : "en-US"
-title                    : "<sfdcode/>"
+title                    : "sfdcode"
 title_separator          : "-"
-name                     : "sfdcode"
+name                     : "<sfdcode/>"
 description              : "Salesforce coding"
 url                      : https://sfdcode.github.io
 baseurl                  : 
