@@ -8,15 +8,15 @@ tags:
   - Talend
   - Java
 ---
-Several times in my daily work within Salesforce environments I face the requirement of integrate a batch job with Salesforce. For this purpose there are many ETL such us, Informatica, Oracle Data Integrator, Talend,... But with this we cover half of the equation. Where should I deploy my batch process. Informatica cloud has in own infrastructure but sometimes is not easy (or cheap) to have this infrastructure. So in this post we are going to deploy our process in a cloud Paas, Heroku in our case, and we will use Talend Open Studio for Data Integration to build the process because if free. So we will have quicky our process ready to run and for very few money ;)
+Several times in my daily work within Salesforce environments I face the requirement of integrate a batch job with Salesforce. For this purpose there are many ETL such us, Informatica, Oracle Data Integrator, Talend,... But with this we cover half of the equation. Where should I deploy my batch process? Informatica cloud has in own infrastructure but sometimes is not easy (or cheap) to have this infrastructure. So in this post we are going to deploy our process in a cloud Paas, Heroku in our case, and we will use Talend Open Studio for Data Integration to build the process because it is free. So we will have quicky our process ready to run and for very few money ;)
 
 ## Heroku
 
-Heroku is a PaaS which is the acronym of Platform as a Service and enables you to run your own applications. In this post we are going to use the Java build pack due to the hability of Talend for export the batch processes as a jar file. But many other languages cound be used in Heroku. Please refer to this link if you would like to know more about [Heroku](https://devcenter.heroku.com/start)
+Heroku is a PaaS which is the acronym of Platform as a Service and enables you to run your own applications. In this post we are going to use the Java build pack due to the hability of Talend for export the batch processes as a jar file. But many other languages cound be used in Heroku. Please refer to this link if you would like to know more about <a href="https://devcenter.heroku.com/start" target="_blank">Heroku</a>
 
 The fundamental part of Heroku are the Dynos which are system processes ables to run webservers and batch processes. In our example we are going to create a `worker` dyno to run the Talend process and a `web` dyno to hold a REST web service that when is invoked will launch the Talend job, in other words, it will call to the worker dyno.
 
-As I have mentioned before we are going to use the java `buildpack`, this buildpack relies on Maven to deploy into heroku the dynos. So we need to be familiarized with maven and java concept before we start. The Maven main file is the `pom.xml` where we will define several things like dependencies, repositories, build cycle,... For more information please refer to the [Maven documentation](https://maven.apache.org/)
+As I have mentioned before we are going to use the java `buildpack`, this buildpack relies on Maven to deploy into heroku the dynos. So we need to be familiarized with maven and java concept before we start. The Maven main file is the `pom.xml` where we will define several things like dependencies, repositories, build cycle,... For more information please refer to the <a href="https://maven.apache.org/" target="_blank">Maven documentation</a>
 
 ### Coding in Heroku
 
@@ -155,13 +155,41 @@ And then we can reference the dependency in the local repository
 {% highlight xml %}
 ...
 <dependency>
-    <artifactId>salesforceCRMManagement</artifactId>
+    <artifactId>post_test_job_0_1</artifactId>
     <groupId>com.javier.local</groupId>
     <version>1.0.0</version>
 </dependency>
 ...
 {% endhighlight %}
 
-### Source
+The talend job that we have build for this post is very simple, it only will read from CSV file that contains one single Account and using the Salesforce Connector of Talend it will upload into a Salesforce org. In order that this job works it needs three environment variables. This variables are the `username` and `password` and path that will include the csv file, the name of this last variable is `files_path`. To export the variables into our heroku project we need to run this command from the heroku CLI:
 
-All the source code of this post is in this [GitHub repository](https://github.com/sfdcode/talend-on-heroku.git)
+{% highlight bash %}
+heroku config:set USERNAME=<your_salesforce_username>
+heroku config:set PASSWORD=<your_salesforce_password>
+heroku config:set FILES_PATH=/app/src/main/resources
+{% endhighlight %}
+
+Early in this post we comment that for the communication between dynos we will use RabbitMQ. RabbitMQ has an addon for Heroku so before we can run our example we have to add this `Addon`. Here is the code that we need to launch with the Heroku CLI:
+
+{% highlight bash %}
+heroku addons:create cloudamqp:lemur
+{% endhighlight %}
+
+For more info about the RabbitMQ addon you can visit this page <a href="https://elements.heroku.com/addons/cloudamqp" target="_blank">CloudAMQP</a>.
+
+Now the last step before we can run the example is to start the dyno with the worker. In Heroku the web dynos are automatically scaled to 1 dyno, but for the workers we need to do it manually. This is as simple as run this command.
+
+{% highlight bash %}
+heroku ps:scale worker=1
+{% endhighlight %}
+
+And finally we can call the REST service that will start the Talend process. To do this just open your favourite browse and go to this URL `https://your-heroku-app/webapi/myresource`
+
+### YouTube
+
+<<Video Embebido o Link to YouTube>>
+
+### Source code
+
+All the source code of this post is in this <a href="https://github.com/sfdcode/talend-on-heroku.git" target="_blank">GitHub repository</a>
