@@ -1,13 +1,21 @@
 ---
-title: "Integration with Salesforce: Talend ETL on Heroku"
+title: "Lightning: Usign reCAPTCHA in lightning components"
 categories:
-  - Integration
+  - Lightning
 tags:
-  - ETL
-  - Heroku
-  - Talend
-  - Java
+  - UI
+  - Lightning
+  - Javascript
 ---
+reCAPTCHA is a Google project that has been created to make your forms in public websites more safe. The basic concept of this project is to stop the bots that are trying to fill web forms. By introducing some task that are very easy for the Humans but almost impossible for a bot. For instance reading some deformated text. The Google guys are very smart and they are usign the reCAPTCHA project for more goals than protect the web form. They are using it also to train them Artificial Intelligence systems. Well done guys!!!. Here you have all the details for the <a href="https://www.google.com/recaptcha/intro/android.html" target="_blank">reCAPTCHA project</a>
+
+
+
+
+
+
+
+
 Several times in my daily work within Salesforce environments I face the requirement of integrate a batch job with Salesforce. For this purpose there are many ETL such us, Informatica, Oracle Data Integrator, Talend,... But with this we cover half of the equation. Where should I deploy my batch process? Informatica cloud has in own infrastructure but sometimes is not easy (or cheap) to have this infrastructure. So in this post we are going to deploy our process in a cloud Paas, Heroku in our case, and we will use Talend Open Studio for Data Integration to build the process because it is free. So we will have quicky our process ready to run and for very few money ;)
 
 ## Heroku
@@ -188,7 +196,7 @@ And finally we can call the REST service that will start the Talend process. To 
 
 ### YouTube
 
-You can see a video running this example here at <a href="https://youtu.be/q7eMlfvT7ZY" target="_blank">YouTube</a>
+<<Video Embebido o Link to YouTube>>
 
 ### Source code
 
