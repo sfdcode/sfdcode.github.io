@@ -9,7 +9,7 @@ tags:
   - code analysis tool
 ---
 <p align="center">
-  <img src="/assets/images/pmd_apex.png">
+  <img src="/assets/images/pmd_apex.png"/>
 </p>
 In this article we are going to make a static code review for salesforce Apex code using the <a href="https://pmd.github.io/" target="_blank">PMD</a> static code analyzer.  It finds common programming flaws like unused variables, empty catch blocks, unnecessary object creation, and so forth. Additionally it includes CPD, the copy-paste-detector.
 
@@ -32,15 +32,15 @@ Apache Ant(TM) version 1.9.7 compiled on April 9 2016
 
 Download the force.com migration tool:
 <p align="center">
-  <img src="/assets/images/force_migration_link_screenshot.jpg">
+  <img src="/assets/images/force_migration_link_screenshot.jpg"/>
 </p>
 Extract the zip file salesforce_ant_&lt;version&gt;.zip
 <p align="center">
-  <img src="/assets/images/force_migration_directory.jpg">
+  <img src="/assets/images/force_migration_directory.jpg"/>
 </p>
 Copy or rename the sample directory to make your configuration. Then edit the build.properties and provide the parameters to connect to your salesforce org. For sf.password provide the password concatenate with the security token, you can generate it from your settings:
 <p align="center">
-  <img src="/assets/images/reset_my_security_token_screenshot.jpg">
+  <img src="/assets/images/reset_my_security_token_screenshot.jpg"/>
 </p>
 I will send you a mail with the security token, then the build.properties files should look like bellow:
 {% highlight properties %}
@@ -223,5 +223,10 @@ Total time: 6 seconds
 {% endhighlight %}
 
 The results can be generated in different formats, and you can integrate this tasks in your force.com migration tool ```build.xml``` to perform a code analysis every time you do a deployment request over a sandbox.
+
+The provided script generates an ```outputPMD.html``` file which contains the information about the rule violations:
+<img src="/assets/images/pmdoutput.jpg" align="center"/>
+
+Plus to this a duplication code report is generated in xml format in the file ```outputCPD.xml``` reporting the parts of the code duplicated across the classes.
 
 All the source code of this post is in this [GitHub repository](https://github.com/sfdcode/apex-pmd-build.git)
