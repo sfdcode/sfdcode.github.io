@@ -118,4 +118,4 @@ You can see a video running this example here at <a href="https://youtu.be/Y4Gds
 
 ### Source code
 
-All the source code of this post is in this <a href="https://github.com/sfdcode/talend-on-heroku.git" target="_blank">GitHub repository</a>
+All the source code of this post is in this <a href="https://github.com/sfdcode/lightning-recaptcha" target="_blank">GitHub repository</a>
