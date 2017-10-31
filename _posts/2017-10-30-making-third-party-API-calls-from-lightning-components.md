@@ -257,4 +257,4 @@ public with sharing class SampleController {
 } 
 {% endhighlight %}
 
-All the source code of this post is in this GitHub repository[apex-http-proxy-for-lightning](https://github.com/sfdcode/apex-http-proxy-for-lightning.git)
+All the source code of this post is in this GitHub repository [apex-http-proxy-for-lightning](https://github.com/sfdcode/apex-http-proxy-for-lightning.git)
