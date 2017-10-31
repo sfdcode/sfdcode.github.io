@@ -24,7 +24,7 @@ Now we have a site key that we need to store in our javascript code.
 
 ## Salesforce coding
 
-For this Lightning Component we are going to need several pieces. Of course, the main will be to create a Lightning Component, that will show the reCAPTCHA and a form that will be enabled when the reCAPTCHA has validated we are not a bot. But we also will need to create a VisualForce page. A VisualForce page?!?!? why??. Well this is because our friend the `Locker Service`. If you don't know the Lightning Locker Service I will recommend you to read this <a href="https://developer.salesforce.com/blogs/developer-relations/2016/04/introducing-lockerservice-lightning-components.html" target="_blank">article</a>. As a short summary I will say that the Locker Service is a piece that Salesforce created to enhance the security in the Lightning Components. His basic fuctions are two. Protect the DOM of the Lightning Components to avoid forbidden accesses, a Custom Component can access his DOM and the DOM of his children but it can't access to other components DOM. And the second function of the Locker Service, is to protect the resource for security reasons, this is based on CSP and it will only allow to have the sources in some location. One of the forbidden accesses is to call JS sources from other domain directly, and as in our tutorial we need to call to google API from Salesforce, the Locker Service will cut this request. Here is where the VisualForce page come to help us to solve this restriction.
+For this Lightning Component we are going to need several pieces. Of course, the main will be to create a Lightning Component, that will show the reCAPTCHA and a form that will be enabled when the reCAPTCHA has validated we are not a bot. But we also will need to create a VisualForce page. A VisualForce page?!?!? why??? Well this is because our friend the `Locker Service`. If you don't know the Lightning Locker Service I will recommend you to read this <a href="https://developer.salesforce.com/blogs/developer-relations/2016/04/introducing-lockerservice-lightning-components.html" target="_blank">article</a>. As a short summary I will say that the Locker Service is a piece that Salesforce created to enhance the security in the Lightning Components. His basic fuctions are two. Protect the DOM of the Lightning Components to avoid forbidden accesses, a Custom Component can access his DOM and the DOM of his children but it can't access to other components DOM. And the second function of the Locker Service, is to protect the resource for security reasons, this is based on CSP and it will only allow to have the sources in some location. One of the forbidden accesses is to call JS sources from other domain directly, and as in our tutorial we need to call to google API from Salesforce, the Locker Service will cut this request. Here is where the VisualForce page come to help us to solve this restriction.
 
 ### Lightning code
 
@@ -114,8 +114,8 @@ Some things that need a little explanation. First, the `script` that loads the r
 
 ### YouTube
 
-<<Video Embebido o Link to YouTube>>
+You can see a video running this example here at <a href="https://youtu.be/Y4GdsYFv7Nk" target="_blank">YouTube</a>
 
 ### Source code
 
-All the source code of this post is in this <a href="https://github.com/sfdcode/talend-on-heroku.git" target="_blank">GitHub repository</a>
+All the source code of this post is in this <a href="https://github.com/sfdcode/lightning-recaptcha" target="_blank">GitHub repository</a>
